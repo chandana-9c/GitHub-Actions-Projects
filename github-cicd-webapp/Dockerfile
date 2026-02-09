@@ -18,10 +18,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# Copy all remaining files
-COPY . .  # copy all files from github-cicd-webapp
+# Copy all remaining files github-cicd-webapp
+COPY . .
 
 EXPOSE 3000
-#CMD ["npm", "start"]
-CMD ["node", "index.js"]  # render
+# CMD ["npm", "start"]
+# render
+CMD ["node", "index.js"]
 
