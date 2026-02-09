@@ -39,8 +39,8 @@ jobs:
 
       - name: Build Docker image
         # run: docker build -t chandana009/webapp-ci-cd:latest .
-        # run: docker build -t chandana009/webapp-ci-cd:latest ./github-cicd-webapp
-        run: docker build -f github-cicd-webapp/Dockerfile -t chandana009/webapp-ci-cd:latest .
+        run: docker build -t chandana009/webapp-ci-cd:latest ./github-cicd-webapp
+        # run: docker build -f github-cicd-webapp/Dockerfile -t chandana009/webapp-ci-cd:latest .
 
       - name: Push Docker image
         run: docker push chandana009/webapp-ci-cd:latest
