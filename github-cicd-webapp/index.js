@@ -17,7 +17,7 @@ const port = process.env.PORT; //render
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, Github CI/CD World! - Test1');
+  res.end('Hello, Github CI/CD World! - Test2 - render:commit - git: branch2');
 
 });
 
