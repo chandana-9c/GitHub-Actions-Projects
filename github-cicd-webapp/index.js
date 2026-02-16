@@ -11,8 +11,8 @@ app.listen(port, () => console.log(`Server running on port ${port}`));
 const http = require('http');
 
 const hostname = '0.0.0.0';
-//const port = 3000;
-const port = process.env.PORT; //render
+const port = 3000;
+//const port = process.env.PORT; //render
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
