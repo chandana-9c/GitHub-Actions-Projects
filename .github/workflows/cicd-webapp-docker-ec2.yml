@@ -1,4 +1,5 @@
-name: CI/CD Pipeline with docker(Build - Push - Deploy to EC2 - Test)
+name: CI/CD Pipeline with docker(Build - Push - Deploy to EC2 - Test) - 
+# proj : Dockerized Application CI/CD with GitHub Actions
 
 on:
   push:
@@ -28,15 +29,18 @@ jobs:
 
       # Build image
       - name: Build Docker image
+        working-directory: github-cicd-webapp
         run: docker build -t chandana009/webapp-ci-cd:${{ github.sha }} .
 
       # Test container locally (optional but good practice)
       - name: Run container locally for test
+        working-directory: github-cicd-webapp
         run: |
           docker run --rm -d -p 3000:3000 chandana009/webapp-ci-cd:${{ github.sha }}
           sleep 5
 
       - name: Test app locally
+        working-directory: github-cicd-webapp
         run: curl -f http://localhost:3000
 
       # Login to Docker Hub
@@ -50,6 +54,7 @@ jobs:
 
       # Push image
       - name: Push Docker image
+        working-directory: github-cicd-webapp
         run: docker push chandana009/webapp-ci-cd:${{ github.sha }}
 
       # Deploy on EC2 via SSH
