@@ -17,7 +17,7 @@ const port = 3000;
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, Github CI/CD World! --- main - Test4 - Auto deploy: After CI checks pass option - 2/16 - 1');
+  res.end('Hello, Github CI/CD World! --- main - Test4 - Auto deploy: After CI checks pass option - 2/16 - 2');
 
 });
 
