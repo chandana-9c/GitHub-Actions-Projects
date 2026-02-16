@@ -65,7 +65,9 @@ jobs:
       - name: Deploy to DEV
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.DEV_EC2_HOST }}
+        # Host name = dev (mention dev host(EC@ public ip in Github secretes)
+          #host: ${{ secrets.DEV_EC2_HOST }}
+          host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
@@ -82,7 +84,9 @@ jobs:
       - name: Deploy to STAGING
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.STAGING_EC2_HOST }}
+        # Staging HOST(Add EC2 instnace public ip as GitHub secretes)
+         # host: ${{ secrets.STAGING_EC2_HOST }}
+          host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
@@ -99,7 +103,9 @@ jobs:
       - name: Deploy to PROD
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.PROD_EC2_HOST }}
+        # mention PROD Host "secrets.PROD_EC2_HOST"
+         # host: ${{ secrets.PROD_EC2_HOST }}
+          host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
