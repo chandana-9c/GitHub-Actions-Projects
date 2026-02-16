@@ -13,7 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
       - name: Install dependencies
         working-directory: github-cicd-webapp
@@ -52,7 +55,7 @@ jobs:
           
       - name: Push image
         working-directory: github-cicd-webapp
-        run: docker push chandana009/webapp:${{ github.sha }}
+        run: docker push chandana009/webapp-ci-cd:${{ github.sha }}
 
   deploy-dev:
     needs: build
@@ -66,10 +69,10 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker pull chandana009/webapp:${{ github.sha }}
+            docker pull chandana009/webapp-ci-cd:${{ github.sha }}
             docker stop webapp || true
             docker rm webapp || true
-            docker run -d -p 3000:3000 --name webapp chandana009/webapp:${{ github.sha }}
+            docker run -d -p 3000:3000 --name webapp chandana009/webapp-ci-cd:${{ github.sha }}
 
   deploy-staging:
     needs: build
@@ -83,10 +86,10 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker pull chandana009/webapp:${{ github.sha }}
+            docker pull chandana009/webapp-ci-cd:${{ github.sha }}
             docker stop webapp || true
             docker rm webapp || true
-            docker run -d -p 3000:3000 --name webapp chandana009/webapp:${{ github.sha }}
+            docker run -d -p 3000:3000 --name webapp chandana009/webapp-ci-cd:${{ github.sha }}
 
   deploy-prod:
     needs: build
@@ -100,7 +103,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker pull chandana009/webapp:${{ github.sha }}
+            docker pull chandana009/webapp-ci-cd:${{ github.sha }}
             docker stop webapp || true
             docker rm webapp || true
-            docker run -d -p 3000:3000 --name webapp chandana009/webapp:${{ github.sha }}
+            docker run -d -p 3000:3000 --name webapp chandana009/webapp-ci-cd:${{ github.sha }}
