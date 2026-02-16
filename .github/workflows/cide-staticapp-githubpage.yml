@@ -26,7 +26,7 @@ jobs:
         run: npm install || echo "No dependencies"
 
       - name: Run tests
-        working-directory: github-cicd-webapp
+       # working-directory: github-cicd-webapp
         run: npm test || echo "No tests configured"
 
       - name: Build app
